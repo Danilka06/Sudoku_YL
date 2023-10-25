@@ -1,13 +1,8 @@
 import sys
 
-from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from Menu import MenuWindow
 
-
-class MenuWindow(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        uic.loadUi('MenuWindowUI.ui', self)
+from PyQt5.QtWidgets import QApplication
 
 
 def except_hook(cls, exception, traceback):
@@ -17,6 +12,6 @@ def except_hook(cls, exception, traceback):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     sys.excepthook = except_hook
-    ex = MenuWindow()
+    ex = MenuWindow.MenuWindow()
     ex.show()
     sys.exit(app.exec())

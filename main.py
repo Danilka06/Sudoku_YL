@@ -1,7 +1,10 @@
+# Importing preinstalled libraries
 import sys
 
+# Importing project files
 from Menu import MenuWindow
 
+# Importing NOT preinstalled libraries
 from PyQt5.QtWidgets import QApplication
 
 

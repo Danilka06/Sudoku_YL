@@ -1,0 +1,44 @@
+<type>[optional scope]: <description>
+[optional body]
+[optional footer(s)]
+
+1) <type>
+    build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+    feat: A new feature
+    fix: A bug fix
+    docs: Documentation only changes
+    refactor: A code change that neither fixes a bug nor adds a feature
+    style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+    perf: A code change that improves performance
+    test: Adding missing tests or correcting existing tests
+    ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+
+2) optional scope
+Any additional information
+Use nouns
+
+3) <description>
+Short message
+Written in the imperative - use add instead of adds or added
+
+4) [optional body]
+Free form
+Explain changes you've made
+
+5) [optional footer(s)]
+Word token used
+Examples
+    """
+    Resolves #10
+    Develpment-Method: Pair Programming
+    With: James
+    """
+
+
+
+
+
+
+
+
+

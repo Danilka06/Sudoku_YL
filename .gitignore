@@ -3,3 +3,9 @@ venv
 .idea
 .~lock.TechnicalAssignment.docx#
 **/__pycache__/
+__pycache__
+__pycache__/
+Menu/__pycache__/
+Play/__pycache__/
+Statistics/__pycache__/
+Settings/__pycache__/

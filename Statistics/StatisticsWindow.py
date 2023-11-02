@@ -1,12 +1,13 @@
-from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget
+from UI.SettingsWindowUI import Ui_settingsWidget
 
 
-class StatisticsWindow(QWidget):
+class StatisticsWindow(QWidget, Ui_settingsWidget):
     def __init__(self):
         print("StatisticsWindow class initialized")
         super().__init__()
-        uic.loadUi('UI/StatisticsWindowUI.ui', self)
+        
+        self.setupUi(self)
 
         self.show()
 

@@ -1,15 +1,16 @@
 from Play.PlayWindow import PlayWindow
 from Statistics.StatisticsWindow import StatisticsWindow
 from Settings.SettingsWindow import SettingsWindow
+from UI.MenuWindowUI import Ui_SudokuUI
 
-from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow
 
 
-class MenuWindow(QMainWindow):
+class MenuWindow(QMainWindow, Ui_SudokuUI):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI/MenuWindowUI.ui', self)
+
+        self.setupUi(self)
 
         self._clicking_on_buttons()
 

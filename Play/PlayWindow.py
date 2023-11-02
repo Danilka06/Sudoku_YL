@@ -1,12 +1,13 @@
-from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget
+from UI.PlayWindowUI import Ui_playWidget
 
 
-class PlayWindow(QWidget):
+class PlayWindow(QWidget, Ui_playWidget):
     def __init__(self):
         print("PlayWindow class initialized")
         super().__init__()
-        uic.loadUi('UI/PlayWindowUI.ui', self)
+
+        self.setupUi(self)
 
         self.show()
 

@@ -1,12 +1,13 @@
-from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget
+from UI.SettingsWindowUI import Ui_settingsWidget
 
 
-class SettingsWindow(QWidget):
+class SettingsWindow(QWidget, Ui_settingsWidget):
     def __init__(self):
         print("SettingsWindow class initialized")
         super().__init__()
-        uic.loadUi('UI/SettingsWindowUI.ui', self)
+        
+        self.setupUi(self)
 
         self.show()
 

@@ -9,3 +9,8 @@ Menu/__pycache__/
 Play/__pycache__/
 Statistics/__pycache__/
 Settings/__pycache__/
+
+Menu/__pycache__/MenuWindow.cpython-311.pyc
+Play/__pycache__/PlayWindow.cpython-311.pyc
+Settings/__pycache__/SettingsWindow.cpython-311.pyc
+Statistics/__pycache__/StatisticsWindow.cpython-311.pyc

@@ -7,9 +7,9 @@ class SettingsWindow(QWidget, Ui_settingsWidget):
         print("SettingsWindow class initialized")
         super().__init__()
         
-        self.setupUi(self)
+        self.setupUi(self)  # loading design
 
-        self.show()
+        self.show()  # open window
 
         self._clicking_on_buttons()
 

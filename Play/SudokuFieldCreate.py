@@ -1,11 +1,13 @@
 class SudokuFieldCreate:
-    def __init__(self):
+    """Class for creating entirely random sudoku field"""
+    def __init__(self) -> None:
         self.end_field = []  # field that program generates first(wining field)
         self.current_field = []  # field that will not have all cells(field that user will see)
 
-        self.fill_field_with_spaces()
+        self._fill_field_with_spaces()
 
-    def fill_field_with_spaces(self):
+    def _fill_field_with_spaces(self) -> None:
+        """Just filling field with zeros(for testing)"""
         for _ in range(9):
             self.end_field.append(['0' for _ in range(9)])
 

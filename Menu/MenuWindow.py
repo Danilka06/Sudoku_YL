@@ -10,7 +10,7 @@ class MenuWindow(QMainWindow, Ui_SudokuUI):
     def __init__(self):
         super().__init__()
 
-        self.setupUi(self)
+        self.setupUi(self)  # loading design
 
         self._clicking_on_buttons()
 

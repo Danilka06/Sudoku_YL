@@ -7,7 +7,7 @@ class SudokuField:
         self.end_field = sudoku_field_create.end_field  # wining field
         self.current_field = sudoku_field_create.current_field  # current field
 
-        self.number_selected = '1'  # number that selected for input from the line below field
+        self.number_selected = None  # number that selected for input from the line below field
 
     def game_tick(self, x: int, y: int) -> None:
         """Pressing on the cell - one tick.\n
@@ -28,7 +28,9 @@ class SudokuField:
         pass  # TODO
 
     def available_move(self) -> bool:
-        return True
+        if self.number_selected is not None:
+            return True
+        return False
 
     def _print_current_field(self):
         for i in range(9):

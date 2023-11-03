@@ -35,5 +35,6 @@ class PlayWindow(QWidget, Ui_playWidget):
             self.sudokuField.game_tick(x, y)
             button.setText(str(self.sudokuField.number_selected))
 
-    def numberSelectGroup_clicked(self):
-        pass  # TODO
+    def numberSelectGroup_clicked(self, button: QPushButton):
+        self.sudokuField.number_selected = button.objectName()[-1]
+        print(self.sudokuField.number_selected)

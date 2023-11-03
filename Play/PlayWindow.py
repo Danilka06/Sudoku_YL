@@ -15,8 +15,7 @@ class PlayWindow(QWidget, Ui_playWidget):
 
         self._clicking_on_buttons()
 
-        self.number_selected = 0
-        self.field = SudokuField()
+        self.sudokuField = SudokuField()
 
     def _clicking_on_buttons(self):
         self.backButton.clicked.connect(self.close)
@@ -26,13 +25,15 @@ class PlayWindow(QWidget, Ui_playWidget):
         self.numberSelectGroup.buttonClicked.connect(self.numberSelectGroup_clicked)
 
     def clearButton_pressed(self):
-        pass
+        pass  # TODO
 
     def fieldGroup_clicked(self, button: QPushButton):
         button_name = button.objectName()  # name of pressed button
         y, x = int(button_name[-3]), int(button_name[-1])  # x and y from button name
 
-        self.field.game_tick(self.number_selected, x, y)
+        if self.sudokuField.available_move():
+            self.sudokuField.game_tick(x, y)
+            button.setText(str(self.sudokuField.number_selected))
 
     def numberSelectGroup_clicked(self):
-        pass
+        pass  # TODO

@@ -35,7 +35,7 @@ class SudokuField:
 
     def available_move(self) -> bool:
         """Checking is move available"""
-        if self.number_selected is not None:
+        if self.number_selected is not None and self.current_field[self.y][self.x] == "0":
             return True
         return False
 

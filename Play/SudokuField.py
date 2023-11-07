@@ -12,6 +12,7 @@ class SudokuField:
         self.x = None
         self.y = None
         self.number_selected = None  # number that selected for input from the line below field
+        self.delete_option = False  # is deleting option activated
 
     def game_tick(self) -> None:
         """Pressing on the cell - one tick.\n
@@ -22,12 +23,14 @@ class SudokuField:
         self.update_field()
         self.check_win()
 
-        self._print_current_field()
+        self._print_variables()
 
     def update_field(self) -> None:
         """Updating self.current_field"""
-        print(f'SudokuField.update_field: current_number={self.number_selected}, x={self.x}, y={self.y}')
-        self.current_field[self.y][self.x] = self.number_selected
+        if self.number_selected:
+            self.current_field[self.y][self.x] = self.number_selected
+        if self.delete_option:
+            self.current_field[self.y][self.x] = None
 
     def check_win(self) -> None:
         """Checking is combination winning"""
@@ -35,13 +38,22 @@ class SudokuField:
 
     def available_move(self) -> bool:
         """Checking is move available"""
-        if self.number_selected is not None and self.current_field[self.y][self.x] is None:
+
+        # When number selected
+        if self.number_selected and self.current_field[self.y][self.x] is None:
             return True
+
+        # When clear button clicked
+        if self.delete_option and isinstance(self.current_field[self.y][self.x], str):
+            return True
+
+        # Bad ways
         return False
 
     def update_variables(self, x: int | None = None,
                          y: int | None = None,
-                         number_selected: str | None = None) -> None:
+                         number_selected: str | None = None,
+                         delete_pressed: bool = False) -> None:
         """Update all variable for future interaction"""
         if x is not None:
             self.x = x
@@ -49,8 +61,16 @@ class SudokuField:
             self.y = y
         if number_selected is not None:
             self.number_selected = number_selected
+            self.delete_option = False
+        if delete_pressed:
+            self.delete_option = not self.delete_option
+            self.number_selected = None
 
     def _print_current_field(self) -> None:
         """Just printing self.current_field in normal format(for testing)"""
         for i in range(9):
             print(self.current_field[i])
+
+    def _print_variables(self):
+        self._print_current_field()
+        print(f'current_number={self.number_selected}, x={self.x}, y={self.y}, delete_option={self.delete_option}')

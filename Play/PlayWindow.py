@@ -23,13 +23,13 @@ class PlayWindow(QWidget, Ui_playWidget):
 
     def _clicking_on_buttons(self) -> None:
         self.backButton.clicked.connect(self.close)
-        self.clearButton.clicked.connect(self.clearButton_pressed)
+        self.clearButton.clicked.connect(self.clearButton_clicked)
 
         self.fieldGroup.buttonClicked.connect(self.fieldGroup_clicked)
         self.numberSelectGroup.buttonClicked.connect(self.numberSelectGroup_clicked)
 
-    def clearButton_pressed(self) -> None:
-        pass  # TODO
+    def clearButton_clicked(self) -> None:
+        self.sudokuField.update_variables(delete_pressed=True)
 
     def fieldGroup_clicked(self, button: QPushButton) -> None:
         button_name = button.objectName()  # name of pressed button
@@ -40,7 +40,12 @@ class PlayWindow(QWidget, Ui_playWidget):
         if self.sudokuField.available_move():
             print("available move")
             self.sudokuField.game_tick()
-            button.setText(str(self.sudokuField.number_selected))
+
+            if self.sudokuField.number_selected:  # if is not None (number selected)
+                button.setText(str(self.sudokuField.number_selected))
+
+            if self.sudokuField.delete_option:  # if delete_option is True
+                button.setText("")
 
     def numberSelectGroup_clicked(self, button: QPushButton) -> None:
         # self.sudokuField.number_selected = button.objectName()[-1]

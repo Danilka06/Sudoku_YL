@@ -18,13 +18,16 @@ class SudokuFieldCreate:
         # TODO: understand what mean self.re
         # TODO: check everything dependent on the variable self.re
 
+        self.difficulty_level = 3
+        self.amount_of_empty_cells = None
+
         self._fill_field_with_shifted_rows()  # creating started field
 
-        self.shuffle_field(iterations=50)  # shuffle field
+        self.shuffle_field(iterations=10_000)  # shuffle field
 
         self.current_field = self.end_field
 
-        self._delete_some_cells()
+        self.delete_some_cells()
 
     def shuffle_field(self, iterations: int) -> None:
         """Shuffling rows and columns to create entirely random sudoku field"""
@@ -109,7 +112,24 @@ class SudokuFieldCreate:
 
         self.current_field = self.end_field
 
-    def _delete_some_cells(self):
-        self.end_field[8][2] = None
-        self.end_field[8][5] = None
-        self.end_field[7][4] = None
+    def count_empty_cells(self):
+        """Depending on difficulty level create amount of empty cells"""
+        match self.difficulty_level:
+            case 1:
+                self.amount_of_empty_cells = rnd(21, 25)
+            case 2:
+                self.amount_of_empty_cells = rnd(26, 30)
+            case 3:
+                self.amount_of_empty_cells = rnd(31, 35)
+            case _:
+                self.amount_of_empty_cells = 81  # if any mistake occurs
+
+    def delete_some_cells(self):
+        """Delete some cells"""
+        self.count_empty_cells()
+
+        while self.amount_of_empty_cells > 0:
+            x, y = rnd(0, 8), rnd(0, 8)  # random coordinates
+            if self.current_field[y][x] is not None:  # if cells is number yet
+                self.current_field[y][x] = None
+                self.amount_of_empty_cells -= 1

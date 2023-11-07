@@ -6,6 +6,7 @@ from Play.SudokuField import SudokuField
 
 class PlayWindow(QWidget, Ui_playWidget):
     """Class based on QWidget to operate with all buttons"""
+
     def __init__(self):
         print("PlayWindow class initialized")
         super().__init__()
@@ -32,10 +33,13 @@ class PlayWindow(QWidget, Ui_playWidget):
         button_name = button.objectName()  # name of pressed button
         y, x = int(button_name[-3]), int(button_name[-1])  # x and y from button name
 
+        self.sudokuField.update_variables(x=x, y=y)  # Update variables in field class
+
         if self.sudokuField.available_move():
-            self.sudokuField.game_tick(x, y)
+            self.sudokuField.game_tick()
             button.setText(str(self.sudokuField.number_selected))
 
     def numberSelectGroup_clicked(self, button: QPushButton) -> None:
-        self.sudokuField.number_selected = button.objectName()[-1]
-        print(self.sudokuField.number_selected)
+        # self.sudokuField.number_selected = button.objectName()[-1]
+        self.sudokuField.update_variables(number_selected=button.objectName()[-1])
+        print(f"selected number = {self.sudokuField.number_selected}")

@@ -12,12 +12,13 @@ class PlayWindow(QWidget, Ui_playWidget):
         super().__init__()
 
         self.setupUi(self)  # loading design
-
         self.show()  # open window
 
-        self._clicking_on_buttons()
-
         self.sudokuField = SudokuField()
+
+        self._fill_in_field()
+
+        self._clicking_on_buttons()
 
     def _clicking_on_buttons(self) -> None:
         self.backButton.clicked.connect(self.close)
@@ -36,6 +37,7 @@ class PlayWindow(QWidget, Ui_playWidget):
         self.sudokuField.update_variables(x=x, y=y)  # Update variables in field class
 
         if self.sudokuField.available_move():
+            print("available move")
             self.sudokuField.game_tick()
             button.setText(str(self.sudokuField.number_selected))
 
@@ -43,3 +45,13 @@ class PlayWindow(QWidget, Ui_playWidget):
         # self.sudokuField.number_selected = button.objectName()[-1]
         self.sudokuField.update_variables(number_selected=button.objectName()[-1])
         print(f"selected number = {self.sudokuField.number_selected}")
+
+    def _fill_in_field(self):
+        """Execute on startup and set text to all buttons from given current field"""
+        for button in self.fieldGroup.buttons():
+            button_name = button.objectName()
+            y, x = int(button_name[-3]), int(button_name[-1])
+
+            cell = self.sudokuField.current_field[y][x]
+            if cell is not None:
+                button.setText(str(cell))

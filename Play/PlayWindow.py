@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QPushButton
+from PyQt5 import QtGui
 from UI.PlayWindowUI import Ui_playWidget
 
 from Play.SudokuField import SudokuField
@@ -47,10 +48,14 @@ class PlayWindow(QWidget, Ui_playWidget):
         print(f"selected number = {self.sudokuField.number_selected}")
 
     def _fill_in_field(self):
-        """Execute on startup and set text to all buttons from given current field"""
+        """Execute on startup and set text to all buttons from given current field
+        And some decoration also;)"""
         for button in self.fieldGroup.buttons():
-            button_name = button.objectName()
-            y, x = int(button_name[-3]), int(button_name[-1])
+            button.setStyleSheet('color: black; background-color: white; border: none')  # button style
+            button.setFont(QtGui.QFont("Arial", 10))  # text font
+
+            button_name = button.objectName()  # name of pressed button
+            y, x = int(button_name[-3]), int(button_name[-1])  # x and y from button name
 
             cell = self.sudokuField.current_field[y][x]
             if cell is not None:

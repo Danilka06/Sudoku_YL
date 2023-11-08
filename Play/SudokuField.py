@@ -13,6 +13,7 @@ class SudokuField:
         self.y = None
         self.number_selected = None  # number that selected for input from the line below field
         self.delete_option = False  # is deleting option activated
+        self.win = False  # if the game is won
 
     def game_tick(self) -> None:
         """Pressing on the cell - one tick.\n
@@ -34,7 +35,15 @@ class SudokuField:
 
     def check_win(self) -> None:
         """Checking is combination winning"""
-        pass  # TODO
+        for y, line in enumerate(self.current_field):
+            for x, item in enumerate(line):
+                if item is None:
+                    self.win = False
+                    return
+                if self.end_field[y][x] != int(item):
+                    self.win = False
+                    return
+        self.win = True
 
     def available_move(self) -> bool:
         """Checking is move available"""
@@ -71,6 +80,15 @@ class SudokuField:
         for i in range(9):
             print(self.current_field[i])
 
+    def _print_end_field(self):
+        """Just printing self.end_field in normal format(for testing)"""
+        for i in range(9):
+            print(self.end_field[i])
+
     def _print_variables(self):
+        print('++++++++++++++++++++++++++++')
         self._print_current_field()
+        print('============================')
+        self._print_end_field()
+        print('++++++++++++++++++++++++++++')
         print(f'current_number={self.number_selected}, x={self.x}, y={self.y}, delete_option={self.delete_option}')

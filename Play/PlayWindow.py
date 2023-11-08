@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QPushButton
+from PyQt5.QtWidgets import QWidget, QPushButton, QLabel
 from PyQt5 import QtGui
 from UI.PlayWindowUI import Ui_playWidget
 
@@ -14,6 +14,7 @@ class PlayWindow(QWidget, Ui_playWidget):
 
         self.setupUi(self)  # loading design
         self.show()  # open window
+        self.win_label.setVisible(False)
 
         self.sudokuField = SudokuField()
 
@@ -47,6 +48,9 @@ class PlayWindow(QWidget, Ui_playWidget):
             if self.sudokuField.delete_option:  # if delete_option is True
                 button.setText("")
 
+            if self.sudokuField.win:  # if you won sudoku puzzle
+                self.after_win()
+
     def numberSelectGroup_clicked(self, button: QPushButton) -> None:
         # self.sudokuField.number_selected = button.objectName()[-1]
         self.sudokuField.update_variables(number_selected=button.objectName()[-1])
@@ -65,3 +69,14 @@ class PlayWindow(QWidget, Ui_playWidget):
             cell = self.sudokuField.current_field[y][x]
             if cell is not None:
                 button.setText(str(cell))
+
+    def after_win(self):
+        for button in self.fieldGroup.buttons():
+            button.setVisible(False)
+
+        for button in self.numberSelectGroup.buttons():
+            button.setVisible(False)
+
+        self.clearButton.setVisible(False)
+        self.black_square.setVisible(False)
+        self.win_label.setVisible(True)

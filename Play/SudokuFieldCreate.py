@@ -18,14 +18,14 @@ class SudokuFieldCreate:
         # TODO: understand what mean self.re
         # TODO: check everything dependent on the variable self.re
 
-        self.difficulty_level = 3
+        self.difficulty_level = "test"
         self.amount_of_empty_cells = None
 
         self._fill_field_with_shifted_rows()  # creating started field
 
         self.shuffle_field(iterations=10_000)  # shuffle field
 
-        self.current_field = self.end_field
+        self.copy_end_to_current()
 
         self.delete_some_cells()
 
@@ -121,6 +121,8 @@ class SudokuFieldCreate:
                 self.amount_of_empty_cells = rnd(26, 30)
             case 3:
                 self.amount_of_empty_cells = rnd(31, 35)
+            case "test":
+                self.amount_of_empty_cells = 2
             case _:
                 self.amount_of_empty_cells = 81  # if any mistake occurs
 
@@ -133,3 +135,9 @@ class SudokuFieldCreate:
             if self.current_field[y][x] is not None:  # if cells is number yet
                 self.current_field[y][x] = None
                 self.amount_of_empty_cells -= 1
+
+    def copy_end_to_current(self):
+        for y, line in enumerate(self.end_field):
+            self.current_field.append([])
+            for x, item in enumerate(line):
+                self.current_field[y].append(item)

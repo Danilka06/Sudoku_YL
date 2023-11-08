@@ -49,7 +49,7 @@
     <string>clear</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="black_square">
    <property name="geometry">
     <rect>
      <x>201</x>
@@ -1955,10 +1955,38 @@
     <string notr="true">fieldGroup</string>
    </attribute>
   </widget>
-  <zorder>label</zorder>
-  <zorder>gridLayoutWidget</zorder>
+  <widget class="QLabel" name="win_label">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>100</y>
+     <width>600</width>
+     <height>200</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>48</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>You win!!!</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <zorder>numberSelectButton_6</zorder>
+  <zorder>numberSelectButton_3</zorder>
+  <zorder>numberSelectButton_5</zorder>
+  <zorder>numberSelectButton_2</zorder>
+  <zorder>numberSelectButton_4</zorder>
+  <zorder>numberSelectButton_8</zorder>
+  <zorder>numberSelectButton_9</zorder>
+  <zorder>numberSelectButton_7</zorder>
+  <zorder>numberSelectButton_1</zorder>
+  <zorder>black_square</zorder>
   <zorder>backButton</zorder>
-  <zorder>horizontalLayoutWidget</zorder>
   <zorder>clearButton</zorder>
   <zorder>fieldCell_4_6</zorder>
   <zorder>fieldCell_5_1</zorder>
@@ -2041,6 +2069,7 @@
   <zorder>fieldCell_0_6</zorder>
   <zorder>fieldCell_5_3</zorder>
   <zorder>fieldCell_4_7</zorder>
+  <zorder>win_label</zorder>
  </widget>
  <resources/>
  <connections/>
